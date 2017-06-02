@@ -1,0 +1,52 @@
+.container {
+    margin-top: 34px;
+}
+
+.background{
+    background: linear-gradient(to right, rgba(70, 118, 255, 1), rgba(83, 192, 255, 1));
+    z-index: -1;
+}
+
+.titulo{
+  text-align: center;
+  color: white;
+}
+
+.subtitulo{
+  text-align: center;
+  max-width: 500px;
+  margin: auto;
+  color: white;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  font-weight: lighter;
+  font-size: large;
+}
+
+.buttons {
+  margin-top: 20px;
+  margin-right: 32px;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+
+.btn-circle:hover {
+  -webkit-box-shadow: 0 8px 16px rgba(70, 66, 255, 0.19), 0 6px 6px rgba(70, 66, 255, 0.19);
+  -moz-box-shadow: 0 8px 16px rgba(70, 66, 255, 0.19), 0 6px 6px rgba(70, 66, 255, 0.19);
+  -ms-box-shadow: 0 8px 16px rgba(70, 66, 255, 0.19), 0 6px 6px rgba(70, 66, 255, 0.19);
+  -o-box-shadow: 0 8px 16px rgba(70, 66, 255, 0.19), 0 6px 6px rgba(70, 66, 255, 0.19);
+  box-shadow: 0 8px 16px rgba(70, 66, 255, 0.19), 0 6px 6px rgba(70, 66, 255, 0.19);
+}
+
+#consulta {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}

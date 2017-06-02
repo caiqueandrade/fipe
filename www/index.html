@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body ng-app="fipe" class="background">
+
+
+    <h1 class="titulo">TABELA FIPE</h1>
+    <h2 class="subtitulo">A Tabela Fipe expressa preços médios de veículos no mercado nacional, servindo apenas como um parâmetro para negociações ou avaliações.</h2>
+
+    <div ng-controller="BuscaController" class="container">
+        <div class="panel-group">
+            <!-- PRIMEIRA TABELA -->
+            <section class="col-sm-6">
+                <div class="panel panel-default" id="consulta">
+                    <div class="panel-heading">Insira as informações do carro</div>
+                    <!-- <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Action <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+            </ul>
+        </div> -->
+        <div class="form-group">
+            <input type="text" placeholder="Digite a marca do veículo" ng-model="entradaMarca">
+        </div>
+
+        <div class="form-group">
+            <input type="text" placeholder="Digite o modelo do veículo" ng-model="filtro">
+        </div>
+
+        <div class="panel-body">Ano do veículo</div>
+    </div>
+    <button class="btn btn-info" ng-click="buscar()">teste</button>
+</section>
+
+<!-- SEGUNDA TABELA -->
+<section class="col-sm-6" id="retorno">
+    <div class="panel panel-default">
+        <div class="panel-heading">Resultado da Pesquisa</div>
+        <select class="form-control">
+          <option ng-repeat="modelo in listaModelo | filter: filtro">{{modelo}}</option>
+        </select>
+        <div class="panel-body">Ano do veículo</div>
+    </div>
+</section>
+</div>
+
+<!-- BOTÕES DE COMPARTILHAMENTO -->
+<div class="container">
+    <div class="buttons pull-right">
+        <button type="button" class="btn btn-success btn-circle hover"><i class="glyphicon glyphicon-print"></i></button>
+        <button type="button" class="btn btn-warning btn-circle hover"><i class="glyphicon glyphicon-envelope"></i></button>
+        <button type="button" class="btn btn-danger btn-circle hover"><i class="glyphicon glyphicon-link"></i></button>
+    </div>
+</div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/app.min.js">
+
+</script>
+
+</body>
+</html>
