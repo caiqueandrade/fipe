@@ -39,7 +39,9 @@
             <input type="text" placeholder="Digite o modelo do veículo" ng-model="filtro">
         </div>
 
-        <div class="panel-body">Ano do veículo</div>
+        <select class="form-control" ng-model="teste" ng-change="buscarAno()">
+          <option ng-repeat="ano in listaAnos">{{ano.nome}}</option>
+        </select>
     </div>
     <button class="btn btn-info" ng-click="buscar()">teste</button>
 </section>
@@ -48,10 +50,11 @@
 <section class="col-sm-6" id="retorno">
     <div class="panel panel-default">
         <div class="panel-heading">Resultado da Pesquisa</div>
-        <select class="form-control">
-          <option ng-repeat="modelo in listaModelo | filter: filtro">{{modelo}}</option>
+        <select class="form-control" ng-model="teste" ng-change="buscarAno()">
+          <option ng-repeat="modelo in listaModelo | filter: filtro" value="{{modelo.codigo}}">{{modelo.nome}}</option>
         </select>
-        <div class="panel-body">Ano do veículo</div>
+        {{teste}}
+        <div class="panel-body">Valor do veículo</div>
     </div>
 </section>
 </div>

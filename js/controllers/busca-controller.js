@@ -6,6 +6,7 @@ function BuscaController($scope, $http){
     $scope.modelos = null;
     $scope.codigoMarca = null;
     $scope.filtro;
+    $scope.teste;
 
     $scope.inicializar = inicializar;
     $scope.buscar = buscar;
@@ -18,9 +19,6 @@ function BuscaController($scope, $http){
                 $scope.codigoMarca = marca.codigo;
             }
         }
-        // console.log($scope.modelos);
-
-
 
         var parametros = {
             method: 'GET',
@@ -33,10 +31,29 @@ function BuscaController($scope, $http){
     function modeloSucesso(respostaModelo){
         $scope.modelos = respostaModelo.data.modelos;
         $scope.listaModelo = [];
-
         for(var i in $scope.modelos){
-            $scope.listaModelo.push($scope.modelos[i].nome);
+            var obj = {
+                nome: $scope.modelos[i].nome,
+                codigo: $scope.modelos[i].codigo
+            }
+
+            $scope.listaModelo.push(obj);
+            // console.log(obj.codigo);
         }
+
+        $scope.anos = respostaModelo.data.anos;
+        $scope.listaAnos = [];
+        for(var i in $scope.anos){
+            var obj = {
+                nome: $scope.anos[i].nome,
+                codigo: $scope.anos[i].codigo
+            }
+
+            $scope.listaAnos.push(obj);
+            // console.log(obj.codigo);
+        }
+
+
     }
 
     function modeloErro(){
@@ -62,4 +79,9 @@ function BuscaController($scope, $http){
     }
 
     inicializar();
+
+    $scope.buscarAno = function(v){
+
+        console.log($scope.teste)
+    }
 }
