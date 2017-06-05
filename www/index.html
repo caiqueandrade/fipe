@@ -16,57 +16,67 @@
     <div ng-controller="BuscaController" class="container">
         <div class="panel-group">
             <!-- PRIMEIRA TABELA -->
-            <section class="col-sm-6">
+            <section class="col-sm-8 col-sm-offset-2" >
+
                 <div class="panel panel-default" id="consulta">
-                    <div class="panel-heading">Insira as informações do carro</div>
-                    <!-- <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Action <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-            </ul>
-        </div> -->
-        <div class="form-group">
-            <input type="text" placeholder="Digite a marca do veículo" ng-model="entradaMarca">
+                    <div class="panel-heading text-center">Insira as informações do carro</div>
+
+                    <div class="conteudo">
+
+                        <div class="form-group">
+                            <input type="text" placeholder="Digite a marca do veículo" ng-change="buscar()" ng-model="entradaMarca">
+                        </div>
+
+
+                        <div class="form-group">
+                            <input type="text" placeholder="Digite o modelo do veículo (opcional)" ng-model="filtro">
+                        </div>
+
+                        <div class="panel panel-default">
+
+                            <select class="form-control" ng-model="teste" ng-change="buscarAno()">
+                                <option ng-repeat="modelo in listaModelo | filter: filtro" value="{{modelo.codigo}}">{{modelo.nome}}</option>
+                            </select>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <select class="form-control" ng-model="teste1">
+                                <option ng-repeat="ano in listaCodigoAno" value="{{ano.codigo}}">{{ano.nome}}</option>
+                            </select>
+                        </div>
+
+                        <button class="btn btn-info btn-circle" id="botao" ng-click="buscarResultado()"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+
+                <div class="panel panel-default" ng-show="resultado">
+                    <div class="panel-heading text-center">Resultado da busca</div>
+                        <div class="panel-body panel-success">
+                            <div class="alert alert-success">
+                                <ul>
+                                    <li><span>Marca:</span> {{resultado.Marca}}</li>
+                                    <li><span>Modelo:</span> {{resultado.Modelo}}</li>
+                                    <li><span>Ano do Modelo:</span> {{resultado.AnoModelo}}</li>
+                                    <li><span>Combustível:</span> {{resultado.Combustivel}}</li>
+                                    <li><span>Valor:</span> {{resultado.Valor}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+
+            </section>
         </div>
 
-        <div class="form-group">
-            <input type="text" placeholder="Digite o modelo do veículo" ng-model="filtro">
-        </div>
 
-        <select class="form-control" ng-model="teste1" ng-change="buscarResultado()">
-          <option ng-repeat="ano in listaCodigoAno" value="{{ano.codigo}}">{{ano.nome}}</option>
-        </select>
-    </div>
-    <button class="btn btn-info" ng-click="buscar()">teste</button>
-</section>
 
-<!-- SEGUNDA TABELA -->
-<section class="col-sm-6" id="retorno">
-    <div class="panel panel-default">
-        <div class="panel-heading">Resultado da Pesquisa</div>
-        <select class="form-control" ng-model="teste" ng-change="buscarAno()">
-          <option ng-repeat="modelo in listaModelo | filter: filtro" value="{{modelo.codigo}}">{{modelo.nome}}</option>
-        </select>
-        {{teste}}
-        <div class="panel-body">Valor do veículo</div>
-    </div>
-</section>
-</div>
-
-<!-- BOTÕES DE COMPARTILHAMENTO -->
-<div class="container">
-    <div class="buttons pull-right">
+        <!-- BOTÕES DE COMPARTILHAMENTO -->
+        <!-- <div class="container">
+        <div class="buttons pull-right">
         <button type="button" class="btn btn-success btn-circle hover"><i class="glyphicon glyphicon-print"></i></button>
         <button type="button" class="btn btn-warning btn-circle hover"><i class="glyphicon glyphicon-envelope"></i></button>
         <button type="button" class="btn btn-danger btn-circle hover"><i class="glyphicon glyphicon-link"></i></button>
     </div>
-</div>
+</div> -->
 
 </div>
 

@@ -10,6 +10,7 @@ function BuscaController($scope, $http){
     $scope.filtro;
     $scope.teste1;
     $scope.teste;
+    $scope.resultado;
 
     $scope.inicializar = inicializar;
     $scope.buscar = buscar;
@@ -20,7 +21,7 @@ function BuscaController($scope, $http){
         for(var i in $scope.marcas){
             var marca = $scope.marcas[i];
 
-            if(marca.nome == $scope.entradaMarca){
+            if(marca.nome.toLowerCase() == $scope.entradaMarca.toLowerCase()){
                 $scope.codigoMarca = marca.codigo;
             }
         }
@@ -57,7 +58,6 @@ function BuscaController($scope, $http){
             $scope.listaAnos.push(obj);
             // console.log(obj.codigo);
         }
-        console.log($scope.listaAnos);
     }
 
     function modeloErro(){
@@ -85,7 +85,6 @@ function BuscaController($scope, $http){
     inicializar();
 
     function buscarAno(v){
-        console.log($scope.teste);
         var parametros = {
             method: 'GET',
             url: 'https://fipe-parallelum.rhcloud.com/api/v1/carros/marcas' + '/' + $scope.codigoMarca + '/modelos' + '/' + $scope.teste + '/anos'
@@ -102,8 +101,6 @@ function BuscaController($scope, $http){
                 nome: $scope.codigoAno[i].nome,
                 codigo: $scope.codigoAno[i].codigo
             }
-            console.log(obj);
-
             $scope.listaCodigoAno.push(obj);
         }
         // console.log($scope.listaCodigoAno.nome);
@@ -114,7 +111,6 @@ function BuscaController($scope, $http){
     }
 
     function buscarResultado(){
-        console.log('teste1: ' + $scope.teste1);
         var parametros = {
             method: 'GET',
             url: 'https://fipe-parallelum.rhcloud.com/api/v1/carros/marcas' + '/' + $scope.codigoMarca + '/modelos/' + $scope.teste + '/anos/' + $scope.teste1
@@ -125,15 +121,9 @@ function BuscaController($scope, $http){
 
     function resultadoSucesso(resposta){
         $scope.resultado = resposta.data;
-        console.log($scope.modeloAno);
-        console.log($scope.resultado);
     }
 
     function resultadoErro(){
-        console.log($scope.teste);
-        for(i in $scope.modeloAno){
-            console.log($scope.modeloAno[i]);
-        }
         console.log('Erro');
     }
 }
