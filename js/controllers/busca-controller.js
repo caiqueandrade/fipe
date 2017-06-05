@@ -5,11 +5,16 @@ function BuscaController($scope, $http){
     $scope.marcas = null;
     $scope.modelos = null;
     $scope.codigoMarca = null;
+    $scope.codigoAno = null;
+    $scope.modeloAno;
     $scope.filtro;
+    $scope.teste1;
     $scope.teste;
 
     $scope.inicializar = inicializar;
     $scope.buscar = buscar;
+    $scope.buscarAno = buscarAno;
+    $scope.buscarResultado = buscarResultado;
 
     function buscar(){
         for(var i in $scope.marcas){
@@ -52,8 +57,7 @@ function BuscaController($scope, $http){
             $scope.listaAnos.push(obj);
             // console.log(obj.codigo);
         }
-
-
+        console.log($scope.listaAnos);
     }
 
     function modeloErro(){
@@ -63,7 +67,7 @@ function BuscaController($scope, $http){
     function inicializar(){
         var parametros = {
             method: 'GET',
-            url: 'https://fipe-parallelum.rhcloud.com/api/v1/carros/marcas'// + '/' + $scope.codigoMarca + '/modelos'
+            url: 'https://fipe-parallelum.rhcloud.com/api/v1/carros/marcas'
         }
 
         $http(parametros).then(respostaSucesso, respostaErro);
@@ -71,7 +75,7 @@ function BuscaController($scope, $http){
 
     function respostaSucesso(resposta){
         $scope.marcas = resposta.data;
-        console.log($scope.marcas);
+        // console.log($scope.marcas);
     }
 
     function respostaErro(){
@@ -80,8 +84,56 @@ function BuscaController($scope, $http){
 
     inicializar();
 
-    $scope.buscarAno = function(v){
+    function buscarAno(v){
+        console.log($scope.teste);
+        var parametros = {
+            method: 'GET',
+            url: 'https://fipe-parallelum.rhcloud.com/api/v1/carros/marcas' + '/' + $scope.codigoMarca + '/modelos' + '/' + $scope.teste + '/anos'
+        }
 
-        console.log($scope.teste)
+        $http(parametros).then(codigoModeloSucesso, codigoModeloErro);
+    }
+
+    function codigoModeloSucesso(resposta){
+        $scope.codigoAno = resposta.data;
+        $scope.listaCodigoAno = [];
+        for(i in $scope.codigoAno){
+            var obj = {
+                nome: $scope.codigoAno[i].nome,
+                codigo: $scope.codigoAno[i].codigo
+            }
+            console.log(obj);
+
+            $scope.listaCodigoAno.push(obj);
+        }
+        // console.log($scope.listaCodigoAno.nome);
+    }
+
+    function codigoModeloErro(){
+        console.log('Erro');
+    }
+
+    function buscarResultado(){
+        console.log('teste1: ' + $scope.teste1);
+        var parametros = {
+            method: 'GET',
+            url: 'https://fipe-parallelum.rhcloud.com/api/v1/carros/marcas' + '/' + $scope.codigoMarca + '/modelos/' + $scope.teste + '/anos/' + $scope.teste1
+        }
+
+        $http(parametros).then(resultadoSucesso, resultadoErro);
+    }
+
+    function resultadoSucesso(resposta){
+        $scope.resultado = resposta.data;
+        console.log($scope.modeloAno);
+        console.log($scope.resultado);
+    }
+
+    function resultadoErro(){
+        console.log($scope.teste);
+        for(i in $scope.modeloAno){
+            console.log($scope.modeloAno[i]);
+        }
+        console.log('Erro');
     }
 }
